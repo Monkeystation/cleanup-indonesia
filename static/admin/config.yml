@@ -1,0 +1,38 @@
+backend:
+  name: git-gateway
+  branch: master
+  commit_messages:
+    create: 'Create {{collection}} “{{slug}}”'
+    update: 'Update {{collection}} “{{slug}}”'
+    delete: 'Delete {{collection}} “{{slug}}”'
+    uploadMedia: '[skip ci] Upload “{{path}}”'
+    deleteMedia: '[skip ci] Delete “{{path}}”'
+
+local_backend: true
+
+media_folder: static/img
+public_folder: /img
+
+collections:
+  - name: "pages"
+    label: "Pages"
+    files:
+      - file: "src/pages/index.md"
+        label: "Home"
+        name: "index"
+        fields:
+          - {label: "Template Key", name: "templateKey", widget: "hidden", default: "index-page"}
+          - {label: Intro, name: intro, widget: object, fields: [{label: Button, name: button, widget: string}, {label: Image item, name: image_item, widget: object, fields: [{label: Image, name: image, widget: image, allow_multiple: false}, {label: Caption, name: caption, widget: markdown, minimal: true}]}, {label: Heading, name: heading, widget: string}, {label: Text, name: text, widget: markdown}]}
+          - {label: Problem, name: problem, widget: object, fields: [{label: Image item, name: image_item, widget: object, fields: [{label: Image, name: image, widget: image}, {label: Caption, name: caption, widget: markdown, minimal: true}]}, {label: Heading, name: heading, widget: string}, {label: Text, name: text, widget: markdown}]}
+          - {label: Cause, name: cause, widget: object, fields: [{label: Image item, name: image_item, widget: object, fields: [{label: Image, name: image, widget: image}, {label: Caption, name: caption, widget: markdown, minimal: true}]}, {label: Heading, name: heading, widget: string}, {label: Text, name: text, widget: markdown}, {label: Video item, name: video_item, widget: object, fields: [{label: Video, name: video, widget: string}, {label: Title, name: title, widget: string}, {label: Caption, name: caption, widget: markdown, minimal: true}]}]}
+          - {label: Solution, name: solution, widget: object, fields: [{label: Image item, name: image_item, widget: object, fields: [{label: Image, name: image, widget: image}, {label: Caption, name: caption, widget: markdown, minimal: true}]}, {label: Heading, name: heading, widget: string}, {label: We, name: we, widget: object, fields: [{label: Caption, name: caption, widget: string}, {label: Text, name: text, widget: markdown}, {label: Items, name: items, widget: list, fields: [{label: Item, name: item, widget: markdown, minimal: true}]}]}, {label: Community, name: community, widget: object, fields: [{label: Caption, name: caption, widget: string}, {label: Text, name: text, widget: markdown}, {label: Items, name: items, widget: list, fields: [{label: Item, name: item, widget: markdown, minimal: true}]}]}, {label: Government, name: government, widget: object, fields: [{label: Caption, name: caption, widget: string}, {label: Text, name: text, widget: markdown}, {label: Items, name: items, widget: list, fields: [{label: Item, name: item, widget: markdown, minimal: true}]}]}]}
+          - {label: Other, name: other, widget: object, fields: [{label: Image item, name: image_item, widget: object, fields: [{label: Image, name: image, widget: image}, {label: Caption, name: caption, widget: markdown, minimal: true}]}, {label: Heading, name: heading, widget: string}, {label: Text, name: text, widget: markdown}, {label: Items, name: items, widget: list, fields: [{label: Item, name: item, widget: markdown, minimal: true}]}]}
+          - {label: Social, name: social, widget: object, fields: [{label: Image item, name: image_item, widget: object, fields: [{label: Image, name: image, widget: image}, {label: Caption, name: caption, widget: markdown, minimal: true}]}, {label: Heading, name: heading, widget: string}, {label: Text, name: text, widget: markdown}]}
+      - file: "src/pages/support/index.md"
+        label: "Support"
+        name: "support"
+        fields:
+          - {label: "Template Key", name: "templateKey", widget: "hidden", default: "support-page"}
+          - {label: "Title", name: "title", widget: "string"}
+          - {label: "Body", name: "body", widget: "markdown"}
+          - {label: "Button donate", name: "button_donate", widget: "markdown", minimal: true}
