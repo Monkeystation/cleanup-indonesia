@@ -22,12 +22,71 @@ collections:
         name: "index"
         fields:
           - {label: "Template Key", name: "templateKey", widget: "hidden", default: "index-page"}
-          - {label: Intro, name: intro, widget: object, fields: [{label: Button, name: button, widget: string}, {label: Image item, name: image_item, widget: object, fields: [{label: Image, name: image, widget: image, allow_multiple: false}, {label: Caption, name: caption, widget: markdown, minimal: true}]}, {label: Heading, name: heading, widget: string, required: false}, {label: Text, name: text, widget: markdown, minimal: true}]}
-          - {label: Mission, name: mission, widget: object, fields: [{label: Image item, name: image_item, widget: object, fields: [{label: Image, name: image, widget: image}, {label: Caption, name: caption, widget: markdown, minimal: true}]}, {label: Heading, name: heading, widget: string, required: false}, {label: Vision, name: vision, widget: markdown, minimal: true}, {label: Mission, name: mission, widget: markdown, minimal: true}, {label: Values, name: values, widget: markdown, minimal: true}]}
-          - {label: Strategy, name: strategy, widget: object, fields: [{label: Image item, name: image_item, widget: object, fields: [{label: Image, name: image, widget: image}, {label: Caption, name: caption, widget: markdown, minimal: true}]}, {label: Heading, name: heading, widget: string, required: false}, {label: Text, name: text, widget: markdown, minimal: true}, {label: Items, name: items, widget: list, fields: [{label: Item, name: item, widget: markdown, minimal: true}]}]}
-          - {label: Action plan, name: plan, widget: object, fields: [{label: Image item, name: image_item, widget: object, fields: [{label: Image, name: image, widget: image}, {label: Caption, name: caption, widget: markdown, minimal: true}]}, {label: Heading, name: heading, widget: string, required: false}, {label: Text, name: text, widget: markdown, minimal: true}, {label: Items, name: items, widget: list, fields: [{label: Item, name: item, widget: markdown, minimal: true}]}]}
-          - {label: Results, name: results, widget: object, fields: [{label: Image item, name: image_item, widget: object, fields: [{label: Image, name: image, widget: image}, {label: Caption, name: caption, widget: markdown, minimal: true}]}, {label: Heading, name: heading, widget: string, required: false}, {label: Text, name: text, widget: markdown, minimal: true}, {label: Items, name: items, widget: list, fields: [{label: Item, name: item, widget: markdown, minimal: true}]}]}
-          - {label: Donate, name: donate, widget: object, fields: [{label: Image item, name: image_item, widget: object, fields: [{label: Image, name: image, widget: image}, {label: Caption, name: caption, widget: markdown, minimal: true}]}, {label: Heading, name: heading, widget: string, required: false}, {label: Text, name: text, widget: markdown, minimal: true, required: false}]}
+          - {label: Intro, name: intro, widget: object, fields: [
+              {label: Button, name: button, widget: string}, 
+              {label: Image item, name: image_item, widget: object, fields: [
+                {label: Image, name: image, widget: image, allow_multiple: false}, 
+                {label: Caption, name: caption, widget: markdown, minimal: true}
+              ]}, 
+              {label: Heading, name: heading, widget: string, required: false}, 
+              {label: Text, name: text, widget: markdown, minimal: true}
+            ]}
+          - {label: Mission, name: mission, widget: object, fields: [
+              {label: Image item, name: image_item, widget: object, fields: [
+                {label: Image, name: image, widget: image}, 
+                {label: Caption, name: caption, widget: markdown, minimal: true}
+              ]}, 
+              {label: Heading, name: heading, widget: string, required: false}, 
+              {label: Vision, name: vision, widget: markdown, minimal: true}, 
+              {label: Mission, name: mission, widget: markdown, minimal: true}, 
+              {label: Values, name: values, widget: markdown, minimal: true}
+            ]}
+          - {label: Strategy, name: strategy, widget: object, fields: [
+              {label: Image item, name: image_item, widget: object, fields: [
+                {label: Image, name: image, widget: image}, 
+                {label: Caption, name: caption, widget: markdown, minimal: true}
+              ]}, 
+              {label: Heading, name: heading, widget: string, required: false}, 
+              {label: Text, name: text, widget: markdown, minimal: true}, 
+              {label: Items, name: items, widget: list, fields: [
+                {label: Item, name: item, widget: markdown, minimal: true}
+              ]}
+            ]}
+          - {label: Action plan, name: plan, widget: object, fields: [
+              {label: Image item, name: image_item, widget: object, fields: [
+                {label: Image, name: image, widget: image}, 
+                {label: Caption, name: caption, widget: markdown, minimal: true}
+              ]}, 
+              {label: Heading, name: heading, widget: string, required: false}, 
+              {label: Text, name: text, widget: markdown, minimal: true}, 
+              {label: Items, name: items, widget: list, fields: [
+                {label: Item, name: item, widget: markdown, minimal: true}
+              ]}
+            ]}
+          - {label: Results, name: results, widget: object, fields: [
+              {label: Image item, name: image_item, widget: object, fields: [
+                {label: Image, name: image, widget: image}, 
+                {label: Caption, name: caption, widget: markdown, minimal: true}
+              ]}, 
+              {label: Heading, name: heading, widget: string, required: false}, 
+              {label: Text, name: text, widget: markdown, minimal: true}, 
+              {label: Items, name: items, widget: list, fields: [
+                {label: Item, name: item, widget: markdown, minimal: true}, 
+                {label: Youtube URL, name: youtube, widget: string, required: false},
+                {label: Image, name: image_item, widget: object, fields: [
+                  {label: Image, name: image, widget: image, required: false}, 
+                  {label: Alt, name: alt, widget: string, required: false}
+                ]}
+              ]}
+            ]}
+          - {label: Donate, name: donate, widget: object, fields: [
+              {label: Image item, name: image_item, widget: object, fields: [
+                {label: Image, name: image, widget: image}, 
+                {label: Caption, name: caption, widget: markdown, minimal: true}
+              ]}, 
+              {label: Heading, name: heading, widget: string, required: false}, 
+              {label: Text, name: text, widget: markdown, minimal: true, required: false}
+            ]}
       - file: "src/pages/support/index.md"
         label: "Support"
         name: "support"

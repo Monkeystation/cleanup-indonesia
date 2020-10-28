@@ -119,18 +119,19 @@ results:
     our education website to our target audience.
   items:
     - item: >-
-        ### “Lost & Found” campaign
+        ### Lost & Found - campaign
 
 
         A campaign to **raise awareness** among the total population and to **stimulate** the growth of **our social community**. The campaign consisted of 16 ads, each displaying a disposed plastic bottle packaging on an Indonesia beach, and asking the brand in question to please come and pick up their lost item. We ran the campaign for one week with a total budget of €160.
+      image_item:
+        image: /img/lost&found.jpg
+        alt: Lost & Found
     - item: >-
-        ### “Bali Ocean Plastic” campaign
+        ### Bali Ocean Plastic - campaign
 
 
         A campaign to **raise awareness** among the **Balinese** population, about the source of their ocean plastic. Many Balinese believe this plastic comes from their neighboring island Java. Our research shows a different story.
-
-
-        <div class="video image is-16by9"><iframe lazy="true" class="has-ratio" src="https://www.youtube.com/embed/cOzyQTMk4o0" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></div>
+      youtube: https://www.youtube.com/embed/cOzyQTMk4o0
 donate:
   image_item:
     image: /img/conclusion.jpg

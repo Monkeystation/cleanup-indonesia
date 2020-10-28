@@ -7,9 +7,9 @@ const PreviewCompatibleImage = React.forwardRef(({ imageInfo, className = '' }, 
 
   if (image) {
     if (image.childImageSharp) {
-    return <Img style={style} imgStyle={imgStyle} fluid={image.childImageSharp.fluid} alt={alt} />
+    return <Img style={style} className={className} imgStyle={imgStyle} fluid={image.childImageSharp.fluid} alt={alt} />
   } else if (typeof image === 'string')
-    return <img style={imgStyle} src={image} alt={alt} />
+    return <img style={imgStyle} src={image} alt={alt} className={className} />
   } else return null
 })
 

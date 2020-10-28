@@ -124,7 +124,7 @@ export const IndexPageTemplate = ({
           <span className="caption is-size-7" dangerouslySetInnerHTML={{__html: md.render(strategy.image_item.caption)}}></span>
           <div className="container">
             <ScrollAnimation animationIn="fadeInUp">
-              <div className="pb-5" dangerouslySetInnerHTML={{__html: md.render(strategy.text)}}></div>
+              <div dangerouslySetInnerHTML={{__html: md.render(strategy.text)}}></div>
             </ScrollAnimation>
             <ul className="is-light-list">
               {strategy.items.map((item, index) => (
@@ -179,7 +179,7 @@ export const IndexPageTemplate = ({
           <div className="container section">
             {results.heading &&
               <ScrollAnimation animationIn="fadeInUp">
-                <h1 className="title is-1 has-text-light">{results.heading}</h1>
+                <h1 className="title is-1 has-text-light has-text-centered">{results.heading}</h1>
               </ScrollAnimation>
             }
           </div>
@@ -195,6 +195,13 @@ export const IndexPageTemplate = ({
                 <ScrollAnimation key={`item` + index} animationIn="fadeInUp">
                   <li>
                     <div dangerouslySetInnerHTML={{__html: md.render(item.item)}}></div>
+                    {item.youtube && <LazyVideo className="mt-3" videoSrcURL={item.youtube} />}
+                    {item.image_item &&
+                      <PreviewCompatibleImage className="mt-3" imageInfo={{
+                        image: item.image_item.image,
+                        alt: item.image_item.alt
+                      }} />
+                    }
                   </li>
                 </ScrollAnimation>
               ))}
@@ -211,7 +218,7 @@ export const IndexPageTemplate = ({
           <div className="container section">
             {donate.heading &&
               <ScrollAnimation animationIn="fadeInUp">
-                <h1 className="title is-1 has-text-light">{donate.heading}</h1>
+                <h1 className="title is-1 has-text-light has-text-centered">{donate.heading}</h1>
               </ScrollAnimation>
             }
           </div>        
@@ -358,6 +365,17 @@ export const pageQuery = graphql`
           }
           items {
             item
+            youtube
+            image_item {
+              alt
+              image {
+                childImageSharp {
+                  fluid(maxWidth: 1920, quality: 60) {
+                    ...GatsbyImageSharpFluid_withWebp
+                  }
+                }
+              }
+            }
           }
         }
         donate {

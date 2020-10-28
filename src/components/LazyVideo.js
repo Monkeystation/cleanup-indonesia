@@ -1,13 +1,13 @@
 import React from 'react';
 import { InView } from 'react-intersection-observer';
 
-const LazyVideo = ({ videoSrcURL, videoTitle, width, height, ...props }) => {
-
+const LazyVideo = ({ videoSrcURL, videoTitle='', className='', width=640, height=360, ...props }) => {
+  console.log(props)
   return (
     <InView triggerOnce={true} rootMargin="500px">
     {({ inView, ref, entry }) => {
       return (inView) ? (
-        <div ref={ref} className="video image is-16by9">
+        <div ref={ref} className={[className, "video image is-16by9"].filter(Boolean).join(' ')}>
           <iframe
             src={videoSrcURL}
             loading="lazy"
