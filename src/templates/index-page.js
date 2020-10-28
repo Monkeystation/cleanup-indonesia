@@ -12,7 +12,6 @@ import Layout from '../components/Layout'
 import LazyVideo from '../components/LazyVideo'
 import PreviewCompatibleImage from '../components/PreviewCompatibleImage'
 import ScrollAnimation from '../components/ScrollAnimation'
-import HeaderAnimation from '../img/header.svg';
 
 var md = require('markdown-it')({html: true})
 ReactGA.initialize('UA-78821189-5')
@@ -59,7 +58,7 @@ export const IndexPageTemplate = ({
           </div>
           <div className="hero-body">
             <div className="container has-text-centered">
-              <object className="header-animation" data={HeaderAnimation} type="image/svg+xml"></object>
+              <object className="header-animation" data="/img/header.svg" type="image/svg+xml"></object>
               <Link className="button is-primary is-large is-bold" to="intro" smooth={true} offset={-64}>{intro.button}</Link>
             </div>
           </div>
