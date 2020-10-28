@@ -2,27 +2,28 @@ import React, {useEffect, useState} from 'react'
 import PropTypes from 'prop-types'
 import { graphql } from 'gatsby'
 import { Link } from 'react-scroll'
+import { Link as PageLink } from 'gatsby'
 import { FaFacebookF, FaTwitter } from 'react-icons/fa'
 import ReactGA from 'react-ga'
 
+import { HTMLContent } from '../components/Content'
 import LazyParallax from '../components/LazyParallax'
 import Layout from '../components/Layout'
 import LazyVideo from '../components/LazyVideo'
-import LazyJuicer from '../components/LazyJuicer'
 import PreviewCompatibleImage from '../components/PreviewCompatibleImage'
 import ScrollAnimation from '../components/ScrollAnimation'
 
-var md = require('markdown-it')()
+var md = require('markdown-it')({html: true})
 ReactGA.initialize('UA-78821189-5')
 ReactGA.pageview('Home')
 
 export const IndexPageTemplate = ({
   intro,
-  problem,
-  cause,
-  solution,
-  other,
-  social
+  mission,
+  strategy,
+  plan,
+  results,
+  donate
 }) => {
   const [parallaxStrength, setParallaxStrength] = useState(250)
   const [parallaxHeight, setParallaxHeight] = useState(500)
@@ -46,7 +47,7 @@ export const IndexPageTemplate = ({
 
   return (
     <>
-      <section className="intro">
+      <section className="intro light">
         <section className="header hero is-fullheight" style={{height: windowHeight}}>
           <div className="hero-image">
             <PreviewCompatibleImage imageInfo={{
@@ -61,13 +62,14 @@ export const IndexPageTemplate = ({
             </div>
           </div>
         </section>
-        <section className="content hero section" id="intro"
-          style={{backgroundImage:`url(${'/img/shells.png'})`}}>
+        <section className="content hero section" id="intro">
           <span className="caption is-size-7" dangerouslySetInnerHTML={{__html: md.render(intro.image_item.caption)}}></span>
-          <div className="container has-text-centered">
-            <ScrollAnimation animationIn="fadeInUp">
-              <h1 className="title is-1 has-text-primary">{intro.heading}</h1>
-            </ScrollAnimation>
+          <div className="container">
+            {intro.heading &&
+              <ScrollAnimation animationIn="fadeInUp">
+                <h1 className="title is-1 has-text-primary">{intro.heading}</h1>
+              </ScrollAnimation>
+            }
             <ScrollAnimation animationIn="fadeInUp">
               <div dangerouslySetInnerHTML={{__html: md.render(intro.text)}}></div>
             </ScrollAnimation>
@@ -75,111 +77,88 @@ export const IndexPageTemplate = ({
         </section>
       </section>
       
-      <section className="problem">
+      <section className="mission blue">
         <LazyParallax
-          image={problem.image_item.image}
+          image={mission.image_item.image}
           height={parallaxHeight}
           strength={parallaxStrength}>
-          <section className="container has-text-centered section">
-            <ScrollAnimation animationIn="fadeInUp">
-              <h1 className="title is-1 has-text-light">{problem.heading}</h1>
-            </ScrollAnimation>
-          </section>
+          <div className="container section">
+            {mission.heading &&
+              <ScrollAnimation animationIn="fadeInUp">
+                <h1 className="title is-1 has-text-primary">{mission.heading}</h1>
+              </ScrollAnimation>
+            }
+          </div>
         </LazyParallax>
-        <section className="content hero section"
-          style={{backgroundImage:`url(${'/img/fish.png'})`}}>
-          <span className="caption is-size-7" dangerouslySetInnerHTML={{__html: md.render(problem.image_item.caption)}}></span>
-          <div className="container has-text-centered">
+        <section className="content hero section">
+          <span className="caption is-size-7" dangerouslySetInnerHTML={{__html: md.render(mission.image_item.caption)}}></span>
+          <div className="container">
             <ScrollAnimation animationIn="fadeInUp">
-              <div dangerouslySetInnerHTML={{__html: md.render(problem.text)}}></div>
+              <div className="mb-4" dangerouslySetInnerHTML={{__html: md.render(mission.vision)}}></div>
+            </ScrollAnimation>
+            <ScrollAnimation animationIn="fadeInUp">
+              <div className="mb-4 is-light-list" dangerouslySetInnerHTML={{__html: md.render(mission.mission)}}></div>
+            </ScrollAnimation>
+            <ScrollAnimation animationIn="fadeInUp">
+              <div dangerouslySetInnerHTML={{__html: md.render(mission.values)}}></div>
             </ScrollAnimation>
           </div>
         </section>
       </section>
 
-      <section className="cause">
+      <section className="strategy light">
         <LazyParallax
-          image={cause.image_item.image}
+          image={strategy.image_item.image}
           height={parallaxHeight}
           strength={parallaxStrength}>
-          <div className="container has-text-centered section">
-            <ScrollAnimation animationIn="fadeInUp">
-              <h1 className="title is-1 has-text-light">{cause.heading}</h1>
-            </ScrollAnimation>
+          <div className="container section has-text-centered">
+            {strategy.heading &&
+              <ScrollAnimation animationIn="fadeInUp">
+                <h1 className="title is-1 has-text-light">{strategy.heading}</h1>
+              </ScrollAnimation>
+            }
           </div>
         </LazyParallax>
-        <section className="content hero section"
-          style={{backgroundImage:`url(${'/img/shells.png'})`}}>
-          <span className="caption is-size-7" dangerouslySetInnerHTML={{__html: md.render(cause.image_item.caption)}}></span>
-          <div className="container has-text-centered">
+        <section className="content hero section">
+          <span className="caption is-size-7" dangerouslySetInnerHTML={{__html: md.render(strategy.image_item.caption)}}></span>
+          <div className="container">
             <ScrollAnimation animationIn="fadeInUp">
-              <div className="pb-5" dangerouslySetInnerHTML={{__html: md.render(cause.text)}}></div>
+              <div className="pb-5" dangerouslySetInnerHTML={{__html: md.render(strategy.text)}}></div>
             </ScrollAnimation>
-            <LazyVideo videoSrcURL={cause.video_item.video} videoTitle={cause.video_item.title} />
+            <ul className="is-light-list">
+              {strategy.items.map((item, index) => (
+                <ScrollAnimation key={`item` + index} animationIn="fadeInUp">
+                  <li>
+                    <div dangerouslySetInnerHTML={{__html: md.render(item.item)}}></div>
+                  </li>
+                </ScrollAnimation>
+              ))}
+            </ul>
           </div>
         </section>
       </section>
 
-      <section className="solution">
+      <section className="plan blue">
         <LazyParallax
-          image={solution.image_item.image}
+          image={plan.image_item.image}
           height={parallaxHeight}
           strength={parallaxStrength}>
-        <div className="container has-text-centered section">
-          <ScrollAnimation animationIn="fadeInUp">
-            <h1 className="title is-1 has-text-light">{solution.heading}</h1>
-          </ScrollAnimation>
+        <div className="container section">
+          {plan.heading &&
+              <ScrollAnimation animationIn="fadeInUp">
+                <h1 className="title is-1 has-text-light">{plan.heading}</h1>
+              </ScrollAnimation>
+            }
         </div>
         </LazyParallax>
-        <section className="content hero section"
-          style={{backgroundImage:`url(${'/img/fish.png'})`}}>
-          <span className="caption is-size-7" dangerouslySetInnerHTML={{__html: md.render(solution.image_item.caption)}}></span>
+        <section className="content hero section">
+          <span className="caption is-size-7" dangerouslySetInnerHTML={{__html: md.render(plan.image_item.caption)}}></span>
           <div className="container">
             <ScrollAnimation animationIn="fadeInUp">
-              <h1 className="is-size-1 has-text-light">{solution.we.caption}</h1>
+              <div dangerouslySetInnerHTML={{__html: md.render(plan.text)}}></div>
             </ScrollAnimation>
             <ul className="is-light-list">
-              {solution.we.items.map((item, index) => (
-                <ScrollAnimation key={`item` + index} animationIn="fadeInUp">
-                  <li>
-                    <div dangerouslySetInnerHTML={{__html: md.render(item.item)}}></div>
-                  </li>
-                </ScrollAnimation>
-              ))}
-            </ul>
-          </div>
-        </section>
-        <section className="content hero section"
-          style={{backgroundImage:`url(${'/img/shells.png'})`}}>
-          <div className="container">
-            <ScrollAnimation animationIn="fadeInUp">
-              <h1 className="is-size-1 has-text-primary">{solution.community.caption}</h1>
-            </ScrollAnimation>
-            <ScrollAnimation animationIn="fadeInUp">
-              <p>{solution.community.text}</p>
-            </ScrollAnimation>
-            <ul className="is-primary-list">
-              {solution.community.items.map((item, index) => (
-                <ScrollAnimation key={`item` + index} animationIn="fadeInUp">
-                  <li>
-                    <div dangerouslySetInnerHTML={{__html: md.render(item.item)}}></div>
-                  </li>
-                </ScrollAnimation>
-              ))}
-            </ul>
-          </div>
-        </section>
-        <section className="content hero section"
-          style={{backgroundImage:`url(${'/img/fish.png'})`}}>
-          <div className="container">
-            <ScrollAnimation animationIn="fadeInUp">
-              <h1 className="is-size-1 has-text-light">{solution.government.caption}</h1>
-            </ScrollAnimation>
-            <ScrollAnimation animationIn="fadeInUp">
-              <p>{solution.government.text}</p>
-            </ScrollAnimation>
-            <ul className="is-light-list">
-              {solution.government.items.map((item, index) => (
+              {plan.items.map((item, index) => (
                 <ScrollAnimation key={`item` + index} animationIn="fadeInUp">
                   <li>
                     <div dangerouslySetInnerHTML={{__html: md.render(item.item)}}></div>
@@ -191,26 +170,27 @@ export const IndexPageTemplate = ({
         </section>
       </section>
 
-      <section className="other">
+      <section className="results light">
         <LazyParallax
-          image={other.image_item.image}
+          image={results.image_item.image}
           height={parallaxHeight}
           strength={parallaxStrength}>
-          <div className="container has-text-centered section">
-            <ScrollAnimation animationIn="fadeInUp">
-              <h1 className="title is-1 has-text-light">{other.heading}</h1>
-            </ScrollAnimation>
+          <div className="container section">
+            {results.heading &&
+              <ScrollAnimation animationIn="fadeInUp">
+                <h1 className="title is-1 has-text-light">{results.heading}</h1>
+              </ScrollAnimation>
+            }
           </div>
         </LazyParallax>
-        <section className="content hero section"
-          style={{backgroundImage:`url(${'/img/shells.png'})`}}>
-          <span className="caption is-size-7" dangerouslySetInnerHTML={{__html: md.render(other.image_item.caption)}}></span>
+        <section className="content hero section">
+          <span className="caption is-size-7" dangerouslySetInnerHTML={{__html: md.render(results.image_item.caption)}}></span>
           <div className="container">
             <ScrollAnimation animationIn="fadeInUp">
-              <p>{other.text}</p>
+              <div className="mb-4" dangerouslySetInnerHTML={{__html: md.render(results.text)}}></div>
             </ScrollAnimation>
             <ul className="is-primary-list">
-              {other.items.map((item, index) => (
+              {results.items.map((item, index) => (
                 <ScrollAnimation key={`item` + index} animationIn="fadeInUp">
                   <li>
                     <div dangerouslySetInnerHTML={{__html: md.render(item.item)}}></div>
@@ -222,25 +202,27 @@ export const IndexPageTemplate = ({
         </section>
       </section>
 
-      <section className="social">
+      <section className="donate blue">
         <LazyParallax
-          image={social.image_item.image}
+          image={donate.image_item.image}
           height={parallaxHeight}
           strength={parallaxStrength}>
-          <div className="container has-text-centered section">
-            <ScrollAnimation animationIn="fadeInUp">
-              <h1 className="title is-1 has-text-light">{social.heading}</h1>
-            </ScrollAnimation>
+          <div className="container section">
+            {donate.heading &&
+              <ScrollAnimation animationIn="fadeInUp">
+                <h1 className="title is-1 has-text-light">{donate.heading}</h1>
+              </ScrollAnimation>
+            }
           </div>        
         </LazyParallax>
-        <section className="content hero section"
-          style={{backgroundImage:`url(${'/img/fish.png'})`}}>
-          <span className="caption is-size-7" dangerouslySetInnerHTML={{__html: md.render(social.image_item.caption)}}></span>
+        <section className="content hero section">
+          <span className="caption is-size-7" dangerouslySetInnerHTML={{__html: md.render(donate.image_item.caption)}}></span>
           <div className="container has-text-centered">
             <ScrollAnimation animationIn="fadeInUp">
-              <div dangerouslySetInnerHTML={{__html: md.render(social.text)}}></div>
+              <div dangerouslySetInnerHTML={{__html: md.render(donate.text)}}></div>
             </ScrollAnimation>
-            <div className="social-share pt-5">
+            <PageLink className="button is-primary is-light is-large is-bold" to="/support">Donate</PageLink>
+            <div className="donate-share pt-5">
               <a href="https://www.facebook.com/sharer?u=https://membersihkanindonesia.org" target="_blank" rel="noreferrer">
                 <FaFacebookF size={60} style={{backgroundColor:'#3b5998', color:'white', padding:'10px'}} />
               </a>
@@ -251,27 +233,17 @@ export const IndexPageTemplate = ({
           </div>
         </section>
       </section>
-
-      <section className="juicer">
-        <section className="content hero section"
-          style={{backgroundImage:`url(${'/img/shells.png'})`}}>
-          <div>
-          <h1 className="title is-2 has-text-primary has-text-centered">#membersihkanindonesia</h1>
-          <LazyJuicer />
-          </div>
-        </section>
-      </section>
     </>
   )
 }
 
 IndexPageTemplate.propTypes = {
   intro: PropTypes.object,
-  problem: PropTypes.object,
-  cause: PropTypes.object,
-  solution: PropTypes.object,
-  other: PropTypes.object,
-  social: PropTypes.object
+  mission: PropTypes.object,
+  strategy: PropTypes.object,
+  plan: PropTypes.object,
+  results: PropTypes.object,
+  donate: PropTypes.object
 }
 
 const IndexPage = ({ data }) => {
@@ -281,11 +253,11 @@ const IndexPage = ({ data }) => {
     <Layout>
       <IndexPageTemplate
         intro={frontmatter.intro}
-        problem={frontmatter.problem}
-        cause={frontmatter.cause}
-        solution={frontmatter.solution}
-        other={frontmatter.other}
-        social={frontmatter.social}
+        mission={frontmatter.mission}
+        strategy={frontmatter.strategy}
+        plan={frontmatter.plan}
+        results={frontmatter.results}
+        donate={frontmatter.donate}
       />
     </Layout>
   )
@@ -320,9 +292,11 @@ export const pageQuery = graphql`
             caption
           }
         }
-        problem {
+        mission {
           heading
-          text
+          vision
+          mission
+          values
           image_item {
             caption
             image {
@@ -334,59 +308,7 @@ export const pageQuery = graphql`
             }
           }
         }
-        cause {
-          heading
-          text
-          image_item {
-            caption
-            image {
-              childImageSharp {
-                fluid(maxWidth: 1920, quality: 60) {
-                  ...GatsbyImageSharpFluid_withWebp
-                }
-              }
-            }
-          }
-          video_item {
-            video 
-            caption
-          }
-        }
-        solution {
-          heading
-          image_item {
-            caption
-            image {
-              childImageSharp {
-                fluid(maxWidth: 1920, quality: 60) {
-                  ...GatsbyImageSharpFluid_withWebp
-                }
-              }
-            }
-          }
-          we {
-            caption
-            text
-            items {
-              item
-            }
-          }
-          community {
-            caption
-            text
-            items {
-              item
-            }
-          }
-          government {
-            caption
-            text
-            items {
-              item
-            }
-          }
-        }
-        other {
+        strategy {
           heading
           text
           image_item {
@@ -403,7 +325,41 @@ export const pageQuery = graphql`
             item
           }
         }
-        social {
+        plan {
+          heading
+          text
+          image_item {
+            caption
+            image {
+              childImageSharp {
+                fluid(maxWidth: 1920, quality: 60) {
+                  ...GatsbyImageSharpFluid_withWebp
+                }
+              }
+            }
+          }
+          items {
+            item
+          }
+        }
+        results {
+          heading
+          text
+          image_item {
+            caption
+            image {
+              childImageSharp {
+                fluid(maxWidth: 1920, quality: 60) {
+                  ...GatsbyImageSharpFluid_withWebp
+                }
+              }
+            }
+          }
+          items {
+            item
+          }
+        }
+        donate {
           heading
           text
           image_item {

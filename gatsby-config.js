@@ -1,8 +1,8 @@
 module.exports = {
   siteMetadata: {
-    title: 'Membersihkan Indonesia',
+    title: 'Cleanup Indonesia',
     description:
-      'Indonesia tenggelam dalam plastik. Kita harus hentikan ini sekarang!',
+      'Indonesia is drowning in plastic. We need to stop this now!',
   },
   plugins: [
     'gatsby-plugin-react-helmet',

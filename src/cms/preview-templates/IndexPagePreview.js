@@ -9,11 +9,11 @@ const IndexPagePreview = ({ entry, getAsset }) => {
     return (
       <IndexPageTemplate
         intro={data.intro}
-        problem={data.problem}
-        cause={data.cause}
-        solution={data.solution}
-        other={data.other}
-        social={data.social}
+        mission={data.mission}
+        strategy={data.strategy}
+        plan={data.plan}
+        results={data.results}
+        donate={data.donate}
       />
     )
   } else {

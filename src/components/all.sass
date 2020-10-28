@@ -38,16 +38,16 @@ ul
     margin: 1.5rem 0
     position: relative
     &:before
-      color: red
       width: 1.5rem
       height: 1.5rem
       position: absolute
       left: -35px
       top: 3px
-  &.is-light-list li:before
-        content: url('data:image/svg+xml;charset=UTF-8,<svg xmlns="http://www.w3.org/2000/svg" fill="%23f9f9e8" width="24" height="24" viewBox="0 0 24 24"><path d="M20.285 2l-11.285 11.567-5.286-5.011-3.714 3.716 9 8.728 15-15.285z"/></svg>')
-  &.is-primary-list li:before
-        content: url('data:image/svg+xml;charset=UTF-8,<svg xmlns="http://www.w3.org/2000/svg" fill="%236ccdd9" width="24" height="24" viewBox="0 0 24 24"><path d="M20.285 2l-11.285 11.567-5.286-5.011-3.714 3.716 9 8.728 15-15.285z"/></svg>')
+
+.is-light-list li:before
+  content: url('data:image/svg+xml;charset=UTF-8,<svg xmlns="http://www.w3.org/2000/svg" fill="%23f9f9e8" width="24" height="24" viewBox="0 0 24 24"><path d="M20.285 2l-11.285 11.567-5.286-5.011-3.714 3.716 9 8.728 15-15.285z"/></svg>')
+.is-primary-list li:before
+  content: url('data:image/svg+xml;charset=UTF-8,<svg xmlns="http://www.w3.org/2000/svg" fill="%236ccdd9" width="24" height="24" viewBox="0 0 24 24"><path d="M20.285 2l-11.285 11.567-5.286-5.011-3.714 3.716 9 8.728 15-15.285z"/></svg>')
 
 footer
   position: absolute
@@ -62,6 +62,19 @@ footer
 
 section
   position: relative
+  &.light
+    h1
+      color: $primary
+    section.section
+      background-image: url('/img/shells.png')
+  &.blue
+    h1
+      color: $light
+    section.section
+      background-image: url('/img/fish.png')
+
+.section 
+  padding: 6rem 2rem
 
 .navbar
   .navbar-menu
@@ -78,7 +91,7 @@ section
 
 .container
   width: 100% !important
-  max-width: 640px !important
+  max-width: 1000px !important
   &.content
     padding: 5rem 0
 
@@ -116,6 +129,7 @@ section
     height: 100%
     display: flex
     align-items: flex-end
+    justify-content: center
     padding-bottom: 2rem
 
 .j-loading
