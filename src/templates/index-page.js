@@ -14,7 +14,7 @@ import PreviewCompatibleImage from '../components/PreviewCompatibleImage'
 import ScrollAnimation from '../components/ScrollAnimation'
 
 var md = require('markdown-it')({html: true})
-ReactGA.initialize('UA-78821189-5')
+ReactGA.initialize('UA-78821189-6')
 ReactGA.pageview('Home')
 
 export const IndexPageTemplate = ({
